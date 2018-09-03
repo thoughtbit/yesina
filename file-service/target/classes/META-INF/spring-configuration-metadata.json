@@ -1,0 +1,16 @@
+{
+  "hints": [],
+  "groups": [
+    {
+      "sourceType": "com.lkmotion.yesincar.utils.OssApiConfig",
+      "name": "apikey",
+      "type": "com.lkmotion.yesincar.utils.OssApiConfig"
+    },
+    {
+      "sourceType": "com.lkmotion.yesincar.utils.AliApiConfig",
+      "name": "apikey",
+      "type": "com.lkmotion.yesincar.utils.AliApiConfig"
+    }
+  ],
+  "properties": []
+}

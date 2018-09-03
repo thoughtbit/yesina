@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lkmotion.yesincar.mapper.BaseInfoMapper">
+    <select id="getBaseInfoDriver" resultType="com.lkmotion.yesincar.dto.baseinfo.BaseInfoDriverDto">
+        SELECT
+            tdi.phone_number driverPhone,
+            tdi.gender driverGender,
+            tdbi.birthday driverBirthday,
+            tdbi.national driverNation,
+            tdbi.marital_status driverMaritalStatus,
+            tdbi.foreign_language_ability drverLanguageLevel,
+            tdbi.education_background driverEducation,
+            tdbi.household_registration_authority driverCensus,
+            tdbi.registered_permanent_residence_address driverAddress,
+            tdbi.address driverContactAddress,
+            tdbi.driver_license_scan_copy_number licenseld,
+            tdbi.first_get_driver_license_date getDriverLicenseDate,
+            tdbi.driver_license_validity_start driverLicenseOn,
+            tdbi.driver_license_validity_end driverLicenseOff,
+            tdbi.is_taxi_driver taxiDriver,
+            tdbi.network_reservation_taxi_driver_license_number certificateNo,
+            tdbi.network_reservation_taxi_driver_license_issuing_agencies networkCarIssueOrGanization,
+            tdbi.certificate_issuing_date networkCarlssueDate,
+            tdbi.first_qualification_date getNetworkCarProoDate,
+            tdbi.qualification_certificate_validity_start networkCarProofOn,
+            tdbi.qualification_certificate_validity_end networkCarProofOff,
+            tdbi.reported_date reportTime,
+            tdbi.service_type serviceType,
+            tdbi.company contractCompany,
+            tdbi.contract_start_date contractOn,
+            tdbi.contract_end_date contractOff,
+            tdi.use_status useStatus
+        FROM
+            tbl_driver_info tdi
+        LEFT JOIN tbl_driver_base_info tdbi ON tdi.id = tdbi.id
+        WHERE
+            tdi.id = #{id}
+	</select>
+
+    <select id="getBaseInfoPassenger" resultType="com.lkmotion.yesincar.dto.baseinfo.BaseInfoPassengerDto">
+        SELECT
+            tpi.register_time,
+            tpi.phone,
+            tpi.passenger_name
+        FROM
+            tbl_passenger_info tpi
+		WHERE
+			tpi.id = #{id}
+	</select>
+
+    <select id="getBaseInfoVehicle" resultType="com.lkmotion.yesincar.dto.baseinfo.BaseInfoVehicleDto">
+        SELECT
+            t1.plate_number,
+            t2.plate_color,
+            t3.seats,
+            t3.brand,
+            t3.model,
+            t2.car_base_type,
+            t2.car_owner,
+            t1.color,
+            t2.engine_number,
+            t2.vin_number,
+            t2.register_time,
+            t2.fuel_type,
+            t2.engine_capacity,
+            t2.transport_issuing_authority,
+            t2.business_area,
+            t2.transport_certificate_validity_start,
+            t2.transport_certificate_validity_end,
+            t2.first_register_time,
+            t2.state_of_repair,
+            t2.annual_audit_status,
+            t2.invoice_printing_equipment_number,
+            t2.gps_brand,
+            t2.gps_model,
+            t2.gps_install_time,
+            t2.report_time,
+            t2.service_type,
+            t2.charge_type_code,
+            t1.use_status
+        FROM
+            tbl_car_info t1
+            LEFT JOIN tbl_car_base_info t2 ON t1.id = t2.id
+            LEFT JOIN tbl_car_type t3 ON t1.car_type_id = t3.id
+        WHERE
+            t1.id = #{id};
+    </select>
+</mapper>

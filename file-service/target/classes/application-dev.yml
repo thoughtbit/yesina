@@ -1,0 +1,63 @@
+#common 通用
+server:
+  port: 8089
+
+spring:
+  datasource:
+    url: jdbc:mysql://drdshbga87913c27public.drds.aliyuncs.com/lkmotion?&useUnicode=true&characterEncoding=utf8&autoReconnect=true&failOverReadOnly=false&allowMultiQueries=true&useSSL=false&zeroDateTimeBehavior=convertToNull
+    username: lkmotion
+    password: yVp_2vPxykz6m1S
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+      driver-class-name: com.mysql.jdbc.Driver
+      filters: stat,wall,slf4j
+      initialSize: 5
+      maxActive: 20
+      maxPoolPreparedStatementPerConnectionSize: 20
+      maxWait: 60000
+      minEvictableIdleTimeMillis: 300000
+      minIdle: 5
+      poolPreparedStatements: true
+      testOnBorrow: false
+      testOnReturn: false
+      testWhileIdle: true
+      timeBetweenEvictionRunsMillis: 60000
+      useGlobalDataSourceStat: true
+      validationQuery: SELECT 'x'
+  activemq:
+    broker-url: tcp://192.168.33.239:61617
+    in-memory: false
+    pool:
+      enabled: true
+      max-connections: 100
+
+#internal 程序内部
+logging:
+  config: classpath:log/logback-spring.xml
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+    use-generated-keys: true
+
+pagehelper:
+  reasonable: true
+
+#customer
+
+apikey:
+  ali:
+   - pool_key: FC100000032650600
+   - file_path: /tmp
+   - key_id: LTAI9YPxRRWkDwnK
+   - key_secret: O2AVJkmpQ3Ilg7tiy6xLcGC7e5ti08
+
+  oss:
+   - endpoint: http://oss-cn-beijing.aliyuncs.com
+   - access_id: LTAI8RXJapESxPBr
+   - access_key: bvWOUDDNdi4nd22QIm2Yw58nUAROH7
+   - bucket_lkmotion: lkmcar-rel-resource
+   - endpoint_upload: http://lkmcar-rel-cdn.androidsec.com
+   - oss_file_name: voiceRecording

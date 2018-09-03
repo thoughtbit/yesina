@@ -1,0 +1,8 @@
+-------------------------------------------------------------------------------
+Test set: com.lkmotion.yesincar.VehicleMapTest
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 3.821 s <<< FAILURE! - in com.lkmotion.yesincar.VehicleMapTest
+uploadCar(com.lkmotion.yesincar.VehicleMapTest)  Time elapsed: 0.118 s  <<< ERROR!
+java.lang.NullPointerException
+	at com.lkmotion.yesincar.VehicleMapTest.uploadCar(VehicleMapTest.java:26)
+

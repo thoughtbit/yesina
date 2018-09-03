@@ -1,0 +1,16 @@
+{
+  "hints": [],
+  "groups": [
+    {
+      "sourceType": "com.lkmotion.yesincar.util.ServiceAddress",
+      "name": "services",
+      "type": "com.lkmotion.yesincar.util.ServiceAddress"
+    },
+    {
+      "sourceType": "com.lkmotion.yesincar.util.OssConfig",
+      "name": "services",
+      "type": "com.lkmotion.yesincar.util.OssConfig"
+    }
+  ],
+  "properties": []
+}

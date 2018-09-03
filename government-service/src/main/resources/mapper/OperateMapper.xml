@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lkmotion.yesincar.mapper.OperateMapper">
+    <select id="selectOnline" resultType="com.lkmotion.yesincar.dto.operate.OperateDto">
+        SELECT c.plate_number,t.driving_licence_number,w.work_start FROM
+        (SELECT b.driving_licence_number,d.id,d.car_id FROM tbl_driver_info d
+        JOIN tbl_driver_base_info b ON d.id = b.id) t
+        JOIN tbl_car_info c ON t.car_id = c.id
+        JOIN tbl_driver_work_time w ON t.id = w.driver_id where w.id = #{id}
+    </select>
+
+    <select id="selectOffline" resultType="com.lkmotion.yesincar.dto.operate.OperateDto">
+        SELECT c.plate_number,t.driving_licence_number,w.work_end FROM
+        (SELECT b.driving_licence_number,d.id,d.car_id FROM tbl_driver_info d
+        JOIN tbl_driver_base_info b ON d.id = b.id) t
+        JOIN tbl_car_info c ON t.car_id = c.id
+        JOIN tbl_driver_work_time w ON t.id = w.driver_id where w.id = #{id}
+    </select>
+
+    <select id="selectDeparture" resultType="com.lkmotion.yesincar.dto.operate.OperateDto">
+        SELECT
+        t1.order_number,
+        t2.driving_licence_number,
+        t4.rule_id,
+        t1.plate_number,
+        t1.receivePassengerLongitude,
+        t1.receivePassengerLatitude,
+        t1.receivePassengerTime
+        FROM
+        tbl_order t1
+        INNER JOIN tbl_driver_base_info t2 ON t1.driver_id = t2.id
+        INNER JOIN tbl_car_info t3 ON t1.car_id = t3.id
+        INNER JOIN tbl_order_rule_mirror t4 ON t1.id = t4.order_id
+        WHERE
+        t1.id = #{id}
+    </select>
+
+    <select id="selectArrival" resultType="com.lkmotion.yesincar.dto.operate.OperateDto">
+        SELECT
+        t1.order_number,
+        t1.passengerGetoffLongitude,
+        t1.passengerGetoffLatitude,
+        t1.passengerGetoffTime,
+        t2.totalDistance,
+        t2.totalTime
+        FROM
+        tbl_order t1
+        INNER JOIN tbl_order_rule_price t2 ON t1.id = t2.order_id
+        WHERE
+        t1.id = #{id}
+        AND t2.category = 1
+    </select>
+
+    <select id="selectOperatorPay" resultType="com.lkmotion.yesincar.dto.operate.OperatePayDto">
+        SELECT
+        t2.order_number,
+        t3.city_code,
+        t4.driving_licence_number,
+        t5.rule_id,
+        t2.plate_number,
+        t2.order_start_time,
+        t2.receive_passenger_longitude,
+        t2.receive_passenger_latitude,
+        t2.receive_passenger_time,
+        t2.passenger_getoff_longitude,
+        t2.passenger_getoff_latitude,
+        t2.passenger_getoff_time,
+        t3.total_distance,
+        t3.total_time,
+        t1.total_price,
+        t3.beyond_price,
+        t2.invoice_type,
+        t3.road_price,
+        t3.parking_price,
+        t3.other_price,
+        t3.cancel_price
+        FROM
+        `tbl_order_payment` t1
+        LEFT JOIN tbl_order t2 ON t1.order_id = t2.id
+        LEFT JOIN tbl_order_rule_price t3 ON t2.id = t3.order_id
+        LEFT JOIN tbl_driver_base_info t4 ON t2.driver_id = t4.id
+        LEFT JOIN tbl_order_rule_mirror t5 ON t2.id = t5.order_id
+        where t1.id=#{id} and t3.category=1;
+    </select>
+</mapper>

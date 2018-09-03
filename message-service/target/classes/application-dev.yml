@@ -1,0 +1,69 @@
+#common 通用
+server:
+  port: 8085
+
+spring:
+  datasource:
+    url: jdbc:mysql://192.168.33.252:3307/lkmotion_php?&useUnicode=true&characterEncoding=utf8&autoReconnect=true&failOverReadOnly=false&allowMultiQueries=true&useSSL=false&zeroDateTimeBehavior=convertToNull
+    username: lkmotion
+    password: v4EY5rf89zVm
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+      driver-class-name: com.mysql.jdbc.Driver
+      filters: stat,wall,slf4j
+      initialSize: 5
+      maxActive: 20
+      maxPoolPreparedStatementPerConnectionSize: 20
+      maxWait: 60000
+      minEvictableIdleTimeMillis: 300000
+      minIdle: 5
+      poolPreparedStatements: true
+      testOnBorrow: false
+      testOnReturn: false
+      testWhileIdle: true
+      timeBetweenEvictionRunsMillis: 60000
+      useGlobalDataSourceStat: true
+      validationQuery: SELECT 'x'
+  activemq:
+    broker-url: tcp://192.168.33.239:61617
+    in-memory: false
+    pool:
+      enabled: true
+      max-connections: 100
+
+
+#internal 程序内部
+logging:
+  config: classpath:log/logback-spring.xml
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+    use-generated-keys: true
+
+#customer
+#极光
+jpush:
+  passenger:
+    app-key: ab0930f531042cb5c450129c
+    master-secret: 5261f7f97b522ff3c273ddee
+  largeScreen:
+    app-key: 50e44a001dfe9f10023b6b49
+    master-secret: 77215befbd4328bb8004de23
+  driver:
+    app-key: 809063ee96a0ce05438889e0
+    master-secret: 9585dafa68648ce9c8ec71ca
+  carScreen:
+    app-key: c560fc60be8a70568dae1143
+    master-secret: c001eff8435323b9059b288d
+#阿里
+ali:
+  #短信
+  sms:
+#    key-id: LTAISiXu02IXXOYv
+#    key-secret: galaOfoJ3O2zpUEMopHKCXwSfhfe0O
+    key-id: LTAIcUTP3dqDuZ02
+    key-secret: cpOTlegrssWVz8m6E2XjECjS6HJWjn
+

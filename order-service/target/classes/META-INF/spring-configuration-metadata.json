@@ -1,0 +1,11 @@
+{
+  "hints": [],
+  "groups": [
+    {
+      "sourceType": "com.lkmotion.yesincar.utils.ServicesConfig",
+      "name": "services",
+      "type": "com.lkmotion.yesincar.utils.ServicesConfig"
+    }
+  ],
+  "properties": []
+}

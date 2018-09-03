@@ -1,0 +1,57 @@
+#common 通用
+server:
+  port: 8081
+
+spring:
+  redis:
+    host: yesincar-prod.redis.rds.aliyuncs.com
+    port: 6379
+  datasource:
+    url: jdbc:mysql://drdshbga87913c27.drds.aliyuncs.com/lkmotion?&useUnicode=true&characterEncoding=utf8&autoReconnect=true&failOverReadOnly=false&allowMultiQueries=true&useSSL=false&zeroDateTimeBehavior=convertToNull
+    username: lkmotion
+    password: yVp_2vPxykz6m1S
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+      driver-class-name: com.mysql.jdbc.Driver
+      filters: stat,wall,slf4j
+      initialSize: 5
+      maxActive: 20
+      maxPoolPreparedStatementPerConnectionSize: 20
+      maxWait: 60000
+      minEvictableIdleTimeMillis: 300000
+      minIdle: 5
+      poolPreparedStatements: true
+      testOnBorrow: false
+      testOnReturn: false
+      testWhileIdle: true
+      timeBetweenEvictionRunsMillis: 60000
+      useGlobalDataSourceStat: true
+      validationQuery: SELECT 'x'
+  activemq:
+    broker-url: tcp://192.168.33.239:61617
+    in-memory: false
+    pool:
+      enabled: true
+      max-connections: 100
+
+services:
+  address:
+    - account: https://account.yesincarapi.com
+    - dispatch: https://dispatch.yesincarapi.com
+    - order: https://order.yesincarapi.com
+    - map: https://map.yesincarapi.com
+    - message: https://message.yesincarapi.com
+    - netty: https://netty.yesincarapi.com
+    - pay: https://pay.yesincarapi.com
+    - valuation: https://valuation.yesincarapi.com
+    - file: https://file.yesincarapi.com
+    - government: https://government.yesincarapi.com
+
+#customer
+
+
+
+
+
+

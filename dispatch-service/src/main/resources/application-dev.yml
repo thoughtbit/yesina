@@ -1,0 +1,55 @@
+#common 通用
+server:
+  port: 8082
+
+spring:
+  redis:
+    host: 192.168.33.239
+    password:
+    port: 6379
+  datasource:
+    url: jdbc:mysql://drdshbga87913c27public.drds.aliyuncs.com/lkmotion?&useUnicode=true&characterEncoding=utf8&autoReconnect=true&failOverReadOnly=false&allowMultiQueries=true&useSSL=false&zeroDateTimeBehavior=convertToNull
+    username: lkmotion
+    password: yVp_2vPxykz6m1S
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+      driver-class-name: com.mysql.jdbc.Driver
+      filters: stat,wall,slf4j
+      initialSize: 5
+      maxActive: 20
+      maxPoolPreparedStatementPerConnectionSize: 20
+      maxWait: 60000
+      minEvictableIdleTimeMillis: 300000
+      minIdle: 5
+      poolPreparedStatements: true
+      testOnBorrow: false
+      testOnReturn: false
+      testWhileIdle: true
+      timeBetweenEvictionRunsMillis: 60000
+      useGlobalDataSourceStat: true
+      validationQuery: SELECT 'x'
+  activemq:
+    broker-url: tcp://192.168.33.239:61617
+    in-memory: false
+    pool:
+      enabled: true
+      max-connections: 100
+
+services:
+  address:
+    - account: http://192.168.33.239:8081
+    - dispatch: http://192.168.33.239:8082
+    - order: http://192.168.33.239:8083
+    - map: http://192.168.33.239:8084
+    - message: http://192.168.33.239:8085
+    - netty: http://192.168.33.239:8086
+    - pay: http://192.168.33.239:8087
+    - valuation: http://192.168.33.239:8088
+    - file: http://192.168.33.239:8089
+    - government: http://192.168.33.239:9999
+
+
+
+
+
